@@ -6,7 +6,7 @@ data = pd.read_csv("weather.csv")
 print(data.dtypes)
 
 # Create subplots for each of the 7 charts
-fig, ax = plot.subplots(7, 1, figsize=(6, 25))
+fig, ax = plot.subplots(6, 1, figsize=(6, 25))
 
 # First Chart: Scatter plot between Cloud Cover and Precipitation
 ax[0].scatter(data["Cloud Cover"], data["Precipitation (%)"])
@@ -24,11 +24,27 @@ ax[1].set_xlabel("Location")
 ax[1].set_ylabel("Humidity")
 ax[1].set_title("Correlation of Location to Humidity")
 
+# Third Chart
 ax[2].plot(data.groupby("Season")["Temperature"].mean(), marker='o')
 ax[2].set_xlabel("Season")
 ax[2].set_ylabel("Average Temperature")
 ax[2].set_title("Average Temperature by Season")
 
+# Fourth Chart
+ax[3].hist(data["Precipitation (%)"])
+ax[3].set_xlabel("Precipitation")
+ax[3].set_title("Correlation of Precipitation")
+
+#Fifth Chart
+ax[4].hist(data["Visibility (km)"])
+ax[4].set_xlabel("Visibility")
+ax[4].set_title("How is Visibility affected?")
+
+ax[5].hist(data["Weather Type"])
+ax[5].set_xlabel("Weather Type")
+ax[5].set_title("How is Weather affected?")
+
+print(data)
 
 # Adjust layout to prevent overlap
 plot.tight_layout()
